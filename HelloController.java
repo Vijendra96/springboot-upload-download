@@ -149,4 +149,15 @@ public class HelloController {
 		return responseEntity;
 	}
 	
+	@GetMapping("service13")
+	public ResponseEntity<Object> service13() throws Exception{
+		File file = new File("src/main/resources/static/downloads/laralogo.png");
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("content-disposition", "attachment;filename=" + file.getName());
+		InputStreamResource resource = new InputStreamResource(new FileInputStream(file));
+		ResponseEntity<Object> responseEntity = 
+				ResponseEntity.ok().headers(headers).body(resource);
+		return responseEntity;
+	}
 	
+}
